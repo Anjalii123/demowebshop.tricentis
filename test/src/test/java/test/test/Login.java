@@ -64,30 +64,31 @@ public class Login {
 		String expected = "atest@gmail.com";
 		Assert.assertEquals(original, expected);
 		System.out.println("UserID is verified");
-       // Going to cart and clearing the cart
+		// Going to cart and clearing the cart
 		driver.findElement(By.xpath("//span[contains(text(),'Shopping cart')]")).click();
+		//Use below 3lines if cart is not empting cart(Since this is a demo application shopping is cart donot have same number of count)
 //		driver.findElement(By.xpath("//input[@type='checkbox'][1]")).click();
-		driver.findElement(By.name("updatecart")).click();
-		//Going to books category 
+//		driver.findElement(By.name("updatecart")).click();
+		// Going to books category
 		driver.findElement(By.xpath("//a[@href='/books'][1]")).click();
-		//Going into the book
+		// Going into the book
 		driver.findElement(By.linkText("Computing and Internet")).click();
-		//Increasing the quantity
+		// Increasing the quantity
 		WebElement quantity = driver.findElement(By.xpath("//input[@id='addtocart_13_EnteredQuantity']"));
 		quantity.clear();
 		quantity.sendKeys("10");
-		//Adding the book to the cart
+		// Adding the book to the cart
 		driver.findElement(By.xpath("//input[@id='add-to-cart-button-13']")).click();
 		Thread.sleep(1000);
-		//Verifing the added to cart message
+		// Verifing the added to cart message
 		String expectedmessage = "The product has been added to your shopping cart";
 		WebElement m = driver.findElement(By.xpath("//p[@class='content']"));
 		String originalmessage = m.getText();
 		Assert.assertEquals(originalmessage, expectedmessage);
 		System.out.println("Added to cart Message Verified");
-		//Going to shopping cart and submit
+		// Going to shopping cart and submit
 		driver.findElement(By.xpath("//span[contains(text(),'Shopping cart')]")).click();
-		//Verifing the total amount
+		// Verifing the total amount
 		WebElement total = driver.findElement(By.className("product-subtotal"));
 		String totalamount = total.getText();
 		String expectedamount = "100.00";
@@ -120,21 +121,21 @@ public class Login {
 		WebElement num = driver.findElement(By.xpath("//input[@id='BillingNewAddress_PhoneNumber']"));
 		num.clear();
 		num.sendKeys("123456");
-		//Click on continue
+		// Click on continue
 		driver.findElement(By.xpath("//input[@title='Continue'][1]")).click();
 		Thread.sleep(3000);
 		List<WebElement> a = driver.findElements(By.xpath("//input[@title='Continue']"));
 		Thread.sleep(5000);
 		a.get(1).click();
 		Thread.sleep(5000);
-		//Selecting Next Day Air radio button and continue
+		// Selecting Next Day Air radio button and continue
 		List<WebElement> radio = driver.findElements(By.xpath("//input[@type='radio']"));
 		radio.get(1).click();
 		driver.findElement(By.xpath("//input[@type='button' and @onclick ='ShippingMethod.save()']")).click();
 		Thread.sleep(5000);
 		driver.findElement(By.xpath("//input[@type='button' and @onclick ='PaymentMethod.save()']")).click();
 		Thread.sleep(5000);
-		//Verifing COD and continue
+		// Verifing COD and continue
 		driver.findElement(By.xpath("//input[@type='button' and @onclick ='PaymentInfo.save()']")).click();
 		String expectedcod = "You will pay by COD";
 		WebElement COD = driver.findElement(By.xpath("//tbody//tr//td//p"));
@@ -142,21 +143,21 @@ public class Login {
 		Assert.assertEquals(originalcod, expectedcod);
 		System.out.println("COD Verified");
 		Thread.sleep(5000);
-		//Confirmning and verifing the order 
+		// Confirmning and verifing the order
 		driver.findElement(By.xpath("//input[@type='button' and @onclick ='ConfirmOrder.save()']")).click();
 		String expectedorder = "Your order has been successfully processed!";
 		Thread.sleep(5000);
-		WebElement order = driver.findElement(By.xpath("//strong[contains(text(),'Your order has been successfully processed!')]"));
+		WebElement order = driver
+				.findElement(By.xpath("//strong[contains(text(),'Your order has been successfully processed!')]"));
 		String originalorder = order.getText();
 		Assert.assertEquals(originalorder, expectedorder);
 		System.out.println("order message verified");
 		Thread.sleep(5000);
-		//printing orde ID
+		// printing orde ID
 		driver.findElement(By.xpath("//a[contains(text(),'Click here for order details.')]")).click();
-		WebElement orderid = driver
-				.findElement(By.xpath("//strong[contains(text(),'Order #886')]"));
+		WebElement orderid = driver.findElement(By.xpath("//strong[contains(text(),'Order #886')]"));
 		String ID = orderid.getText();
-		System.out.println("Order number is" +ID);
+		System.out.println("Order number is" + ID);
 		driver.findElement(By.className("ico-logout")).click();
 		driver.quit();
 	}
