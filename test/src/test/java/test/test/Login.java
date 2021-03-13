@@ -66,7 +66,7 @@ public class Login {
 		System.out.println("UserID is verified");
        // Going to cart and clearing the cart
 		driver.findElement(By.xpath("//span[contains(text(),'Shopping cart')]")).click();
-		driver.findElement(By.xpath("//input[@type='checkbox'][1]")).click();
+//		driver.findElement(By.xpath("//input[@type='checkbox'][1]")).click();
 		driver.findElement(By.name("updatecart")).click();
 		//Going to books category 
 		driver.findElement(By.xpath("//a[@href='/books'][1]")).click();
